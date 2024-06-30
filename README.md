@@ -117,6 +117,8 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
   <img src="https://drive.google.com/uc?export=view&id=1xNii3cDPob5cX8QpXPu3S3ps8s9O5X15" width="75%" height="75%"/>
 ## Result
 
+![Content image](swan_testing.png)
+
 
 
 
