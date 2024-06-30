@@ -9,6 +9,7 @@ Neural style transfer is a fascinating application of deep learning that blends 
   - [Extracting style and content features](#Extracting-style-and-content-features)
   - [Define Loss Functions](#Define-Loss-Functions)
   - [Training and optimizing](#Training-and-optimizing)
+- [Result](#Result)
 ## Description
 This project leverages the power of convolutional neural networks (CNNs) to perform neural style transfer. The VGG19 model, pre-trained on the ImageNet dataset, is used to extract content and style features from images. By optimizing a target image to simultaneously match the content representation of one image and the style representation of another, the project produces a new image that combines the semantic content of the former with the artistic style of the latter.
 ## Advantages of Neural Style Transfer
@@ -118,6 +119,9 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
 ## Result
 
 ![Content image](swan_testing.png)
+
+
+![Result Image](Result-swan.png)
 
 
 
