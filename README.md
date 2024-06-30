@@ -78,37 +78,36 @@ tmp_vgg = tf.keras.applications.vgg19.VGG19()
 - **Define Loss Functions**:
   - Style Loss:
 ```python
-    def get_style_loss(features, targets):
-    """Expects two images of dimension h, w, c
+def get_style_loss(features, targets):
+"""Expects two images of dimension h, w, c
 
-    Args:
-    features: tensor with shape: (height, width, channels)
-    targets: tensor with shape: (height, width, channels)
+Args:
+features: tensor with shape: (height, width, channels)
+targets: tensor with shape: (height, width, channels)
 
-    Returns:
-    style loss (scalar)
-    """
-    # get the average of the squared errors
-    style_loss = tf.reduce_mean(tf.square(features - targets))
+Returns:
+style loss (scalar)
+"""
+# get the average of the squared errors
+style_loss = tf.reduce_mean(tf.square(features - targets))
 
-    return style_loss
-    ```
+return style_loss
+```
   - Content Loss:
-    ```python
-    def get_content_loss(features, targets):
-    """Expects two images of dimension h, w, c
+```python
+def get_content_loss(features, targets):
+"""Expects two images of dimension h, w, c
+Args:
+features: tensor with shape: (height, width, channels)
+targets: tensor with shape: (height, width, channels)
 
-    Args:
-    features: tensor with shape: (height, width, channels)
-    targets: tensor with shape: (height, width, channels)
+Returns:
+content loss (scalar)
+"""
+# get the sum of the squared error multiplied by a scaling factor
+content_loss = 0.5 * tf.reduce_sum(tf.square(features - targets))
 
-    Returns:
-    content loss (scalar)
-    """
-    # get the sum of the squared error multiplied by a scaling factor
-    content_loss = 0.5 * tf.reduce_sum(tf.square(features - targets))
-
-    return content_loss
+return content_loss
 ```
   - Total Loss:
     The total loss is given by $L_{total} = \beta L_{style} + \alpha L_{content}$, where $\beta$ and $\alpha$ are weights we will give to the content and style features to generate the new image.
