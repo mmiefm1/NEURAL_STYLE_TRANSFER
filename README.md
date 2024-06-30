@@ -121,8 +121,9 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
 ![Content image](swan_testing.png)
 
 
-![Result Image](Result-swan.png)
-
+<p align="center">
+  <img src="Result-swan.png" alt="Description of the image">
+</p>
 
 
 
