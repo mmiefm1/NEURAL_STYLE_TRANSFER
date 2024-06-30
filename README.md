@@ -48,7 +48,7 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
   - For the style layers, we will use the first layer of each convolutional block. Also for each style layer we will use the gram matrix and store these results in a list.
  
     - The function for calculating the gram mmatrix is as follows:
-      ```bash
+      ```python
       def gram_matrix(input_tensor):
       """ Calculates the gram matrix and divides by the number of locations
       Args:
@@ -77,7 +77,7 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
   - For the content layer, we will use the second convolutional layer of the last convolutional block (just one layer)
 - **Define Loss Functions**:
   - Style Loss:
-    ```bash
+    ```python
     def get_style_loss(features, targets):
     """Expects two images of dimension h, w, c
 
@@ -94,7 +94,7 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
     return style_loss
     ```
   - Content Loss:
-    ```bash
+    ```python
     def get_content_loss(features, targets):
     """Expects two images of dimension h, w, c
 
