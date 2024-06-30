@@ -41,15 +41,15 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
 ## Methodology Behind Neural Style Transfer
 - **Preprocess, content & style images**: Basically, downloading your content and style images.
 - **Load pre-trained VGG19 model**:
-  ```python
-     tmp_vgg = tf.keras.applications.vgg19.VGG19()
-  ```
+```python
+tmp_vgg = tf.keras.applications.vgg19.VGG19()
+```
 - **Extracting style and content features**:
   - For the style layers, we will use the first layer of each convolutional block. Also for each style layer we will use the gram matrix and store these results in a list.
  
     - The function for calculating the gram mmatrix is as follows:
-      ```python
-      def gram_matrix(input_tensor):
+```python
+    def gram_matrix(input_tensor):
       """ Calculates the gram matrix and divides by the number of locations
       Args:
       input_tensor: tensor of shape (batch, height, width, channels)
@@ -73,11 +73,11 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
       scaled_gram = gram / num_locations
 
       return scaled_gram
-      ```
+```
   - For the content layer, we will use the second convolutional layer of the last convolutional block (just one layer)
 - **Define Loss Functions**:
   - Style Loss:
-    ```python
+```python
     def get_style_loss(features, targets):
     """Expects two images of dimension h, w, c
 
@@ -109,7 +109,7 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
     content_loss = 0.5 * tf.reduce_sum(tf.square(features - targets))
 
     return content_loss
-    ```
+```
   - Total Loss:
     The total loss is given by $L_{total} = \beta L_{style} + \alpha L_{content}$, where $\beta$ and $\alpha$ are weights we will give to the content and style features to generate the new image.
 
