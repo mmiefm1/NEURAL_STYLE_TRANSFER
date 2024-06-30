@@ -42,7 +42,7 @@ tmp_vgg = tf.keras.applications.vgg19.VGG19()
 - **Extracting style and content features**:
   - For the style layers, we will use the first layer of each convolutional block. Also for each style layer we will use the gram matrix and store these results in a list.
  
-    - The function for calculating the gram mmatrix is as follows:
+    - The function for calculating the gram matrix is as follows:
 ```python
     def gram_matrix(input_tensor):
       """ Calculates the gram matrix and divides by the number of locations
