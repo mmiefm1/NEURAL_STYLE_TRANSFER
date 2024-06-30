@@ -42,7 +42,7 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
 - **Preprocess, content & style images**: Basically, downloading your content and style images.
 - **Load pre-trained VGG19 model**:
   ```python
-  tmp_vgg = tf.keras.applications.vgg19.VGG19()
+     tmp_vgg = tf.keras.applications.vgg19.VGG19()
   ```
 - **Extracting style and content features**:
   - For the style layers, we will use the first layer of each convolutional block. Also for each style layer we will use the gram matrix and store these results in a list.
