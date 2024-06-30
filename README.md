@@ -1,6 +1,14 @@
 # NEURAL_STYLE_TRANSFER
 Neural style transfer is a fascinating application of deep learning that blends the content of one image with the style of another to create a unique, stylized image. This project demonstrates the implementation of neural style transfer using a pre-trained [VGG19](https://keras.io/api/applications/vgg/#vgg19-function)
 ## Table of Contents
+- [Description](#Description)
+- [Advantages of Neural Style Transfer](#Advantages-of-Neural-Style-Transfer)
+- [Methodology Behind Neural Style Transfer](#Methodology-Behind-Neural-Style-Transfer)
+  - [Preprocess, content & style images](#Preprocess,-content-&-style-images)
+  - [Load pre-trained VGG19 model](#Load-pre-trained-VGG19-model)
+  - [Extracting style and content features](#Extracting-style-and-content-features)
+  - [Define Loss Functions](#Define-Loss-Functions)
+  - [Training and optimizing](#Training-and-optimizing)
 ## Description
 This project leverages the power of convolutional neural networks (CNNs) to perform neural style transfer. The VGG19 model, pre-trained on the ImageNet dataset, is used to extract content and style features from images. By optimizing a target image to simultaneously match the content representation of one image and the style representation of another, the project produces a new image that combines the semantic content of the former with the artistic style of the latter.
 ## Advantages of Neural Style Transfer
@@ -29,14 +37,42 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
 8. **Interdisciplinary Integration**:
     - Can be integrated with other cutting-edge technologies such as virtual reality (VR), augmented reality (AR), and digital marketing. This integration creates innovative and immersive experiences that enhance player interaction and engagement in various fields, particularly in the dynamic world of game development.
   
-## Methodology Behind Neural style transfer
-- **Preprocess, content & style images**
+## Methodology Behind Neural Style Transfer
+- **Preprocess, content & style images**: Basically, downloading your content and style images.
 - **Load pre-trained VGG19 model**:
   ```bash
   tmp_vgg = tf.keras.applications.vgg19.VGG19()
   ```
 - **Extracting style and content features**:
-  - For the style layers, we will use the first layer of each convolutional block.
+  - For the style layers, we will use the first layer of each convolutional block. Also for each style layer we will use the gram matrix and store these results in a list.
+ 
+    - The function for calculating the gram mmatrix is as follows:
+      ```bash
+      def gram_matrix(input_tensor):
+      """ Calculates the gram matrix and divides by the number of locations
+      Args:
+      input_tensor: tensor of shape (batch, height, width, channels)
+
+      Returns:
+      scaled_gram: gram matrix divided by the number of locations
+      """
+
+      # calculate the gram matrix of the input tensor
+      gram = tf.linalg.einsum('bijc,bijd->bcd', input_tensor, input_tensor)
+
+      # get the height and width of the input tensor
+      input_shape = tf.shape(input_tensor)
+      height = input_shape[1]
+      width = input_shape[2]
+
+      # get the number of locations (height times width), and cast it as a tf.float32
+      num_locations = tf.cast(height * width, tf.float32)
+
+      # scale the gram matrix by dividing by the number of locations
+      scaled_gram = gram / num_locations
+
+      return scaled_gram
+      ```
   - For the content layer, we will use the second convolutional layer of the last convolutional block (just one layer)
 - **Define Loss Functions**:
   - Style Loss:
@@ -74,6 +110,14 @@ This project leverages the power of convolutional neural networks (CNNs) to perf
     return content_loss
     ```
   - Total Loss:
+    The total loss is given by $L_{total} = \beta L_{style} + \alpha L_{content}$, where $\beta$ and $\alpha$ are weights we will give to the content and style features to generate the new image.
+
+- **Training and optimizing**: Now, we compute the gradient of loss with respect to generated image using `tf.gradientTape()` and similar to model training we will use an optimizer,`Adam()` here, to update the original image with the computed gradients.
+
+  <img src="https://drive.google.com/uc?export=view&id=1xNii3cDPob5cX8QpXPu3S3ps8s9O5X15" width="75%" height="75%"/>
+## Result
+
+
 
 
 
