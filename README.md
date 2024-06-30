@@ -94,6 +94,7 @@ style_loss = tf.reduce_mean(tf.square(features - targets))
 return style_loss
 ```
   - Content Loss:
+    
 ```python
 def get_content_loss(features, targets):
 """Expects two images of dimension h, w, c
